@@ -1,5 +1,32 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-  <h1>Home is Working</h1>
+  <div class="flex flex-col sm:flex-row max-w-full mx-auto overflow-hidden rounded-lg shadow-lg p-2 sm:p-4 items-center gap-4 sm:gap-6">
+    <div class="sm:w-1/2 flex flex-col justify-between p-4">
+      <div>
+        <a href="#" class="block mt-2 text-2xl font-semibold text-gray-50 dark:text-white hover:text-gray-200 hover:underline">The Apex Predator: <span class="text-cyan-500">Velocity GT Hypercar</span></a>
+        <p class="mt-2 text-sm text-gray-200 dark:text-gray-400">The Velocity GT Hypercar is a stunning masterpiece of engineering, merging blistering speed with unparalleled luxury. Powered by a twin-turbocharged V8 engine that produces a jaw-dropping 1,500 horsepower, this beast rockets from 0 to 60 mph in a mind-bending 2.3 seconds. With its aerodynamic carbon-fiber body and cutting-edge technology, the Velocity GT effortlessly slices through the air at speeds over 250 mph. Inside, you'll find a meticulously crafted cabin featuring premium leather, digital interfaces, and state-of-the-art driver assistance systems. The Velocity GT is more than a supercar—it's the pinnacle of modern automotive design, where power meets precision, built for those who live life at full throttle.</p>
+      </div>
+    </div>
+    <div class="sm:w-1/2">
+      <img class="rounded-full object-cover w-full h-60 sm:h-80" src="{% static 'display.png' %}" alt="Article" />
+    </div>
+  </div>
+
+  {% for item in data %}
+    <div class="card bg-base-100 w-96 shadow-xl">
+      <figure class="px-10 pt-10">
+        <img src="{{ item.image.url }}" />
+      </figure>
+      <div class="card-body items-center text-center">
+        <h2 class="card-title">{{ item.name }}</h2>
+        {% if item.content|length >= 20 %}
+          <p>{{ item.content|truncatewords:20 }}.....</p>
+        {% endif %}
+        <div class="card-actions">
+          <button class="btn btn-primary">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
 {% endblock %}

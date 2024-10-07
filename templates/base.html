@@ -7,13 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
+  <body class="bg-gray-800 h-screen">
     <div class="flex flex-wrap place-items-center">
       <section class="relative mx-auto">
         <!-- navbar -->
         <nav class="flex justify-between bg-gray-900 text-white w-screen">
           <div class="px-5 xl:px-12 py-6 flex w-full items-center">
-            <a class="text-3xl font-bold font-heading" href="#">Logo Here.</a>
+            <a class="text-3xl font-bold font-heading text-cyan-500" href="#">Sports-Cars</a>
 
             <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
               <li>
@@ -23,6 +23,10 @@
               {% if user.is_authenticated %}
                 <li>
                   <a class="hover:text-gray-200" href="{% url 'profile' %}">Profile</a>
+                </li>
+
+                <li>
+                  <a class="hover:text-gray-200" href="{% url 'addcar' %}">Add Cars</a>
                 </li>
                 <li>
                   <a class="hover:text-gray-200" href="{% url 'logout' %}">Logout</a>
