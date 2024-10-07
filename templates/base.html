@@ -20,19 +20,21 @@
                 <a class="hover:text-gray-200" href="{% url 'home' %}">Home</a>
               </li>
 
-              <li>
-                <a class="hover:text-gray-200" href="">Profile</a>
-              </li>
-              <li>
-                <a class="hover:text-gray-200" href="">Logout</a>
-              </li>
-
-              <li>
-                <a class="hover:text-gray-200" href="{% url 'register' %}">Register</a>
-              </li>
-              <li>
-                <a class="hover:text-gray-200" href="">Login</a>
-              </li>
+              {% if user.is_authenticated %}
+                <li>
+                  <a class="hover:text-gray-200" href="{% url 'profile' %}">Profile</a>
+                </li>
+                <li>
+                  <a class="hover:text-gray-200" href="{% url 'logout' %}">Logout</a>
+                </li>
+              {% else %}
+                <li>
+                  <a class="hover:text-gray-200" href="{% url 'register' %}">Register</a>
+                </li>
+                <li>
+                  <a class="hover:text-gray-200" href="{% url 'login' %}">Login</a>
+                </li>
+              {% endif %}
 
               <li>
                 <a class="hover:text-gray-200" href="">Album</a>
@@ -71,10 +73,9 @@
         </nav>
       </section>
     </div>
-
-    {% comment %} {% for m in messages %}
+    {% for m in messages %}
       <h1 class="text-{{ m.tags }} text-center text-2xl">{{ m }}</h1>
-    {% endfor %} {% endcomment %}
+    {% endfor %}
     {% block content %}
 
     {% endblock %}
