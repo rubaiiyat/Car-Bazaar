@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-  <div class="flex flex-col sm:flex-row max-w-full mx-auto overflow-hidden rounded-lg shadow-lg p-2 sm:p-4 items-center gap-4 sm:gap-6">
+  {% comment %} <div class="flex flex-col sm:flex-row max-w-full mx-auto overflow-hidden rounded-lg shadow-lg p-2 sm:p-4 items-center gap-4 sm:gap-6">
     <div class="sm:w-1/2 flex flex-col justify-between p-4">
       <div>
         <a href="#" class="block mt-2 text-2xl font-semibold text-gray-50 dark:text-white hover:text-gray-200 hover:underline">The Apex Predator: <span class="text-cyan-500">Velocity GT Hypercar</span></a>
@@ -11,22 +11,32 @@
     <div class="sm:w-1/2">
       <img class="rounded-full object-cover w-full h-60 sm:h-80" src="{% static 'display.png' %}" alt="Article" />
     </div>
+  </div> {% endcomment %}
+
+  <div class="text-center p-10">
+    <h1 class="font-bold text-4xl mb-4 text-white">Introducing Our Latest Product</h1>
   </div>
 
-  {% for item in data %}
-    <div class="card bg-base-100 w-96 shadow-xl">
-      <figure class="px-10 pt-10">
-        <img src="{{ item.image.url }}" />
-      </figure>
-      <div class="card-body items-center text-center">
-        <h2 class="card-title">{{ item.name }}</h2>
-        {% if item.content|length >= 20 %}
-          <p>{{ item.content|truncatewords:20 }}.....</p>
-        {% endif %}
-        <div class="card-actions">
-          <button class="btn btn-primary">Buy Now</button>
+  <div class="container mx-auto px-4">
+    <div class="flex flex-wrap items-center justify-center gap-20">
+      {% for item in data %}
+        <div class="bg-gray-800 rounded-lg shadow-lg p-8 w-96 h-1/6 cursor-pointer hover:bg-gray-900 duration-500">
+          <div class="relative overflow-hidden">
+            <img class="object-cover w-96" src="{{ item.image.url }}" alt="Product" />
+          </div>
+          <p>
+            Brand: <a href="" class="text-blue-500">{{ item.brand }}</a>
+          </p>
+          <h3 class="text-xl font-bold mt-4 text-cyan-500"><a href="">{{ item.name }}</a></h3>
+          {% if item.content|length >= 15 %}
+            <p class="text-gray-300 text-sm mt-2">{{ item.content|truncatewords:20 }}</p>
+          {% endif %}
+
+          <div class="flex items-center justify-center mt-10">
+            <button class="bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-950">View Product</button>
+          </div>
         </div>
-      </div>
+      {% endfor %}
     </div>
-  {% endfor %}
+  </div>
 {% endblock %}

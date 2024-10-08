@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import carsForm
 from django.views.generic import CreateView, TemplateView
 from django.contrib import messages
+from cars.models import carsModel
 
 
 class addCars(CreateView):
@@ -25,3 +26,12 @@ class addCars(CreateView):
     def form_valid(self, form):
         messages.success(self.request, "Item Added")
         return super().form_valid(form)
+
+
+def detailsCard(request):
+    page = "Details"
+
+    if request.method == "POST":
+        form = carsModel(request.POST)
+        if form.is_valid():
+            form.save()
