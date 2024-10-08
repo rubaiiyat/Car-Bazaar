@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from .forms import carsForm
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView
 from django.contrib import messages
 from cars.models import carsModel
 

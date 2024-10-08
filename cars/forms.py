@@ -6,4 +6,4 @@ class carsForm(forms.ModelForm):
 
     class Meta:
         model = carsModel
-        fields = ["name", "content", "price", "brand", "image"]
+        fields = ["name", "content", "price", "quantity", "brand", "image"]
