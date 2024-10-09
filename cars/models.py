@@ -18,3 +18,15 @@ class carsModel(models.Model):
 
     def __str__(self) -> str:
         return f"{self.name} - {self.brand} - ${self.price}"
+
+
+class commentModel(models.Model):
+    post = models.ForeignKey(
+        carsModel, on_delete=models.CASCADE, related_name="comments"
+    )
+    name = models.CharField(max_length=50)
+    comment = models.CharField(max_length=100)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"{self.name} - {self.comment}"

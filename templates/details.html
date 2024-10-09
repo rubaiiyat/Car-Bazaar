@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
   <div class="flex items-center justify-center gap-4 md:gap-10 lg:gap-20 mt-5">
@@ -33,4 +34,28 @@
       </div>
     </div>
   </div>
+  <hr />
+
+  <h1 class="text-white font-bold text-center text-2xl mt-2">Total Reviews: {{ comments|length }}</h1>
+
+  <div class="w-96 mx-auto mt-2">
+    {% for comment in comments %}
+      <div class="mb-5">
+        <h1><span class="text-white text-xl font-bold">{{ comment.name }}</span> - {{ comment.date }}</h1>
+        <h1 class="text-white">{{ comment.comment }}</h1>
+      </div>
+    {% endfor %}
+  </div>
+  <form method="post" action="" class="w-3/12 mx-auto mt-5">
+    {% csrf_token %}
+    <!-- {{ form|crispy }} -->
+    {% for fm in form %}
+      <h1>{{ fm.label_tag }}</h1>
+      <h1>{{ fm }}</h1>
+      <h1>{{ fm.errors }}</h1>
+    {% endfor %}
+    <div class="flex justify-center items-center mt-2">
+      <button class="bg-gradient-to-r from-cyan-600 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-gray-950 font-semibold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105">Add Comment</button>
+    </div>
+  </form>
 {% endblock %}

@@ -64,9 +64,14 @@ class userProfile(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        cart_item = cartModel.objects.filter(user=self.request.user)
+
+        total = sum(item.product.price * item.quantity for item in cart_item)
+
         context["page"] = "profile"
         context["user"] = self.request.user
-        context["cart_item"] = cartModel.objects.filter(user=self.request.user)
+        context["cart_item"] = cart_item
+        context["total"] = total
         return context
 
 

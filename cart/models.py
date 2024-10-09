@@ -9,4 +9,4 @@ class cartModel(models.Model):
     quantity = models.IntegerField(default=1)
 
     def __str__(self) -> str:
-        return f"{self.product.name} - {self.quantity}"
+        return f"({self.user.username}- {self.user.email}) - {self.product.name} - {self.quantity}"
