@@ -31,4 +31,9 @@
       </div>
     </div>
   </div>
+
+  {% for item in cart_item %}
+    <h1>Name: {{ item.product.name }}</h1>
+    <h1>Quantity: {{ item.quantity }}</h1>
+  {% endfor %}
 {% endblock %}

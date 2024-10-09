@@ -10,6 +10,7 @@ urlpatterns = [
     path("home/", views.home, name="home"),
     path("user/", include("profiles.urls")),
     path("user/", include("cars.urls")),
+    path("user/", include("cart.urls")),
     path("product/<int:id>", views.postDetails.as_view(), name="Details"),
     path(
         "home/<slug:brand_slug>",

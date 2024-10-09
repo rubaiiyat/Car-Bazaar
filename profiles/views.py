@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.contrib.auth import logout
+from cart.models import cartModel
 
 
 # Create your views here.
@@ -65,6 +66,7 @@ class userProfile(TemplateView):
         context = super().get_context_data(**kwargs)
         context["page"] = "profile"
         context["user"] = self.request.user
+        context["cart_item"] = cartModel.objects.filter(user=self.request.user)
         return context
 
 
